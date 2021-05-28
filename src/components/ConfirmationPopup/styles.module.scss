@@ -1,0 +1,39 @@
+.Container{
+  width: 100%;
+  height: 100%;
+  background: #FFFFFF;
+  padding: 10px 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 17px;
+  position: relative;
+}
+.Text{
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  color: var(--blue);
+}
+.Buttons{
+  display: flex;
+  justify-content: flex-end;
+}
+.NoButton{
+  padding: 0 12px;
+  background: #DA173A;
+  border-radius: 32px;
+  font-size: 18px;
+  line-height: 32px;
+  color:var(--gray);
+}
+
+.YesButton{
+  padding: 0 12px;
+  background: #1DBA60;
+  border-radius: 32px;
+  font-size: 18px;
+  line-height: 32px;
+  color:var(--gray);
+  margin-left:7px
+}
