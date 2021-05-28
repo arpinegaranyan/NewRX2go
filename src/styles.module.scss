@@ -9,12 +9,10 @@
   background-blend-mode: overlay;
   background: linear-gradient(107.67deg, #1D33FF 0%, rgba(17, 31, 0, 0.47) 99.5%);
   .Container {
-    display: flex;
     height: 100vh;
     width: 94.5vw;
     position: relative;
-    overflow: hidden;
-    flex-direction: column;
+    overflow: auto;
     background: white;
     border-radius: 4px;
     padding: 0 10px;
@@ -72,11 +70,8 @@
     }
     .Steps{
       height: 5.4%;
-      width: 100%;
-      //padding-left: 19px;
-      margin: 1.7% 0 3% 0;
-
-
+      width: 94%;
+      margin: 1.7% 3% 3% 3%;
     }
     .Message{
       color:var(--blue);
@@ -84,50 +79,18 @@
       font-weight: 700;
       font-family: Cera Round Pro DEMO;
       line-height: 22px;
+      margin-bottom: 12px;
 
+    }
+    .SliderContainer{
+      height: 17%;
+      outline: 1px solid var(--blue);
     }
     .ResheduleDeliveryForm{
 
     }
-   .DeliveryDetails{
-     height: auto;
-     font-size: 14px;
-     line-height: 14px;
-     display: flex;
-     align-items: center;
-     justify-content: space-between;
-     text-indent: 1px;
-     flex-wrap: wrap;
-
-     div:nth-child(1) {
-      width: 35%;
-     }
-     div:nth-child(2) {
-       width: 46%;
-     }
-     div:nth-child(3) {
-       width: 35%;
-     }
-     div:nth-child(4) {
-       width: 46%;
-     }
-     .Detail{
-       display: flex;
-       flex-direction: column;
-       width: 50%;
-       color: #000000;
-       margin-top: 7px;
-       line-height: 18px;
-
-       .Title{
-         color: #859193;
-         margin-bottom: 3px;
-       }
-       a{
-         color: #0494E4;
-       }
-     }
-
+    .DetailsWithPadding{
+       padding-bottom: 25%;
     }
    .Signature{
      width: 100%;
@@ -157,6 +120,7 @@
     .CopayContainer{
       height: 7.8%;
       width: 100%;
+      z-index: 3;
     }
     .SignHere{
       width: 99%;
@@ -169,12 +133,23 @@
       width: 100%;
       display: flex;
       align-items: center;
-      position: absolute;
+      position: fixed;
       bottom: 0;
+      z-index: 4;
+
       .LeftButton{
         margin:0 8px;
       }
     }
+  }
+  .BlurContainer{
+    position: absolute;
+    width: 100%;
+    height: 8%;
+    bottom: 0;
+    left: 0;
+    background: #C4EAFF;
+    filter: blur(24px);
   }
   .ChatWrapper{
     position: absolute;
@@ -182,7 +157,7 @@
     right: -2px;
     width: 55px;
     height: 55px;
-    z-index: 3;
+    z-index: 4;
   }
 }
 

@@ -14,11 +14,42 @@ import ResheduleDeliveryForm from "./components/ResheduleDeliveryForm";
 import ResheduleButton from "./components/Buttons/Reshedule";
 import ConfirmButton from "./components/Buttons/Confirm";
 import BackButton from "./components/Buttons/Back";
+import DeliveryDetails from "./components/DeliveryDetails";
 
 function App() {
     const [visibilityState, setVisibilityState] = useState({
-        showResheduleDeliveryForm : false
+        showResheduleDeliveryForm : false,
+        showConfirmationPopup: false,
+        confirmDelivery: false
     })
+
+    const handleShowConfirmationPopup = () => {
+        setVisibilityState( prevState => {
+            return {
+                ...prevState,
+                showConfirmationPopup:true,
+            }
+        } )
+    };
+
+    const handleCloseConfirmationPopup = () => {
+        setVisibilityState( prevState => {
+            return {
+                ...prevState,
+                showConfirmationPopup:false,
+            }
+        } )
+    };
+
+    const handleShowPage5 = () => {
+        setVisibilityState( prevState => {
+            return {
+                ...prevState,
+                confirmDelivery:!prevState.confirmDelivery,
+            }
+        } )
+    };
+
 
 //open first page ` showSignature = false, showLeaveAtStop = true, showConfirmationPopup = false
 //open second page ` showSignature = false,  showConfirmationPopup = true
@@ -27,16 +58,18 @@ function App() {
 
   const showSignature = false;
   const showLeaveAtStop = true;
-  const showConfirmationPopup = false; // make true and showSignature = false  to open 2-nd page
 
 
   return (
       <div className={styles.AppContainer}>
           <div className={styles.Container}>
               {
-                  showConfirmationPopup  &&
+                  visibilityState.showConfirmationPopup  &&
                   <div className={styles.ConfirmationPopup}>
-                      <ConfirmationPopup/>
+                      <ConfirmationPopup
+                          onCancel={handleCloseConfirmationPopup}
+                          onConfirm={handleCloseConfirmationPopup}
+                      />
                   </div>
               }
 
@@ -44,7 +77,7 @@ function App() {
                   <img src={Logo} alt="logo"/>
                   <img src={Purple} alt="purple"/>
                   <div className={styles.IdContainer}>
-                      <div className={styles.Button} onClick={null}>Package out</div>
+                      <div className={styles.Button} onClick={handleShowPage5}>Package out</div>
                       <span className={styles.Id}>#11058553</span>
                   </div>
               </div>
@@ -53,10 +86,14 @@ function App() {
               </div>
               <div className={styles.Message}>
                   {
-                      showSignature ? "Your signature" : "Confirm delivery to your order"
+                      showSignature ? "Your signature" : "Confirm delivery to your order:"
                   }
 
               </div>
+              {
+                  visibilityState.confirmDelivery &&
+                      <div className={styles.SliderContainer}></div>
+              }
               {
                   visibilityState.showResheduleDeliveryForm &&
                   <div className={styles.ResheduleDeliveryForm}>
@@ -64,28 +101,11 @@ function App() {
                   </div>
               }
               {
-                  !showSignature &&   <div className={styles.DeliveryDetails}>
-                      <div className={styles.Detail}>
-                          <span className={styles.Title}>Date to deliver:</span>
-                          <span>04/10/2020</span>
-                      </div>
-                      <div className={styles.Detail}>
-                          <span className={styles.Title}>Promissed ETA:</span>
-                          <span>11:00 AM - 04:00 PM</span>
-                      </div>
-                      <div className={styles.Detail}>
-                          <span className={styles.Title}>Delivery Adress</span>
-                          <span><a>2333 East 2nd Street Brooklyn, APT 5A NY 11223</a></span>
-                      </div>
-                      <div className={styles.Detail}>
-                          <span className={styles.Title}>From</span>
-                          <span>NYU Langone Hospital-Cobble Hill</span>
-                      </div>
-                  </div>
+                  !showSignature && !visibilityState.confirmDelivery && <DeliveryDetails />
               }
               <div className={styles.Signature}>
               {
-                  (showSignature || showLeaveAtStop) && !showConfirmationPopup && <Signature type={showSignature}/>
+                  (showSignature || showLeaveAtStop) && !visibilityState.showConfirmationPopup && <Signature type={showSignature}/>
               }
               </div>
               {
@@ -100,6 +120,10 @@ function App() {
                   showSignature && <div className={styles.SignHere}><SignHere/></div>
 
               }
+              {
+                  visibilityState.confirmDelivery &&<div className={styles.DetailsWithPadding}><DeliveryDetails /></div>
+
+              }
               <div className={styles.Footer}>
                   <div className={styles.LeftButton}>
                      {
@@ -109,7 +133,11 @@ function App() {
                   <ConfirmButton onClick={null}/>
               </div>
           </div>
-          <div className={styles.ChatWrapper}><Chat count={1}/></div>
+          {
+              visibilityState.confirmDelivery &&  <div className={styles.BlurContainer}/>
+
+          }
+          <div className={styles.ChatWrapper} onClick={handleShowConfirmationPopup}><Chat count={1}/></div>
       </div>
 
   );

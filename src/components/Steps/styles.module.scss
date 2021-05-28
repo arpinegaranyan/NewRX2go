@@ -42,3 +42,24 @@
   left:0;
   background:  #1587A0;
 }
+
+.Check{
+  position: absolute;
+  border-radius: 50%;
+  height: 9.75px;
+  width: 9.75px;
+  background: #4FCB26;
+  z-index: 5;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(308deg);
+  .CheckSign{
+    width: 4px;
+    height: 2px;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+  }
+}
