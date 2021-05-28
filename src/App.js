@@ -2,6 +2,7 @@ import React ,{useState} from "react";
 import styles from "./styles.module.scss";
 import Logo from "./Icons/Logo.svg"
 import Download from "./Icons/download.svg"
+import Purple from "./Icons/purple.png"
 import Chat from "./components/ChatIcon/Chat";
 import Copay from "./components/Copay";
 import Instructions from "./components/Instructions";
@@ -10,16 +11,23 @@ import Steps from "./components/Steps";
 import ConfirmationPopup from "./components/ConfirmationPopup"
 import SignHere from "./components/SignHere";
 import ResheduleDeliveryForm from "./components/ResheduleDeliveryForm";
+import ResheduleButton from "./components/Buttons/Reshedule";
+import ConfirmButton from "./components/Buttons/Confirm";
+import BackButton from "./components/Buttons/Back";
 
 function App() {
     const [visibilityState, setVisibilityState] = useState({
         showResheduleDeliveryForm : false
     })
 
+//open first page ` showSignature = false, showLeaveAtStop = true, showConfirmationPopup = false
+//open second page ` showSignature = false,  showConfirmationPopup = true
+//open third page ` showSignature = true,  showConfirmationPopup = false
+
 
   const showSignature = false;
   const showLeaveAtStop = true;
-  const showConfirmationPopup = false;
+  const showConfirmationPopup = false; // make true and showSignature = false  to open 2-nd page
 
 
   return (
@@ -34,7 +42,7 @@ function App() {
 
               <div className={styles.Header}>
                   <img src={Logo} alt="logo"/>
-                  <img src={Download} alt="download"/>
+                  <img src={Purple} alt="purple"/>
                   <div className={styles.IdContainer}>
                       <div className={styles.Button} onClick={null}>Package out</div>
                       <span className={styles.Id}>#11058553</span>
@@ -75,10 +83,11 @@ function App() {
                       </div>
                   </div>
               }
-
+              <div className={styles.Signature}>
               {
-                  showSignature || showLeaveAtStop && <div className={styles.Signature}><Signature type="leaveAtStop"/></div>
+                  (showSignature || showLeaveAtStop) && !showConfirmationPopup && <Signature type={showSignature}/>
               }
+              </div>
               {
                   ! showSignature &&
                        <>
@@ -92,8 +101,12 @@ function App() {
 
               }
               <div className={styles.Footer}>
-                  <div className={styles.ResheduleButton} onClick={null}>Reshedule delivery</div>
-                  <div className={styles.ConfirmButton} onClick={null}>Confirm</div>
+                  <div className={styles.LeftButton}>
+                     {
+                         showSignature ?  <BackButton onClick={null}/> : <ResheduleButton onClick={null}/>
+                     }
+                  </div>
+                  <ConfirmButton onClick={null}/>
               </div>
           </div>
           <div className={styles.ChatWrapper}><Chat count={1}/></div>
