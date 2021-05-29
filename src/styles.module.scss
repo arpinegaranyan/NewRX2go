@@ -87,10 +87,15 @@
       outline: 1px solid var(--blue);
     }
     .ResheduleDeliveryForm{
-
+     width: 100%;
+      height: 58.5%;
+      outline: 1px solid green;
     }
     .DetailsWithPadding{
-       padding-bottom: 25%;
+      height: auto;
+      border-top: 1px solid #EBF7FF;
+      margin-top: 7px;
+      padding-bottom: 25%;
     }
    .Signature{
      width: 100%;
@@ -109,6 +114,7 @@
       align-items: center;
       color: #313E46;
       width: 92%;
+      height: 38px;
 
     }
     .InstructionsContainer{
@@ -138,7 +144,7 @@
       z-index: 4;
 
       .LeftButton{
-        margin:0 8px;
+        margin:0 18px;
       }
     }
   }
@@ -150,6 +156,9 @@
     left: 0;
     background: #C4EAFF;
     filter: blur(24px);
+  }
+  .Empty{
+    height: 15%;
   }
   .ChatWrapper{
     position: absolute;

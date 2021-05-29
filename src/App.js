@@ -18,7 +18,7 @@ import DeliveryDetails from "./components/DeliveryDetails";
 
 function App() {
     const [visibilityState, setVisibilityState] = useState({
-        showResheduleDeliveryForm : false,
+        showResheduleDeliveryForm : true,
         showConfirmationPopup: false,
         confirmDelivery: false
     })
@@ -86,7 +86,7 @@ function App() {
               </div>
               <div className={styles.Message}>
                   {
-                      showSignature ? "Your signature" : "Confirm delivery to your order:"
+                      showSignature ? "Your signature" : visibilityState.showResheduleDeliveryForm ? "Reshedule delivery": "Confirm delivery to your order:"
                   }
 
               </div>
@@ -101,13 +101,17 @@ function App() {
                   </div>
               }
               {
-                  !showSignature && !visibilityState.confirmDelivery && <DeliveryDetails />
+                  !visibilityState.showResheduleDeliveryForm && !showSignature && !visibilityState.confirmDelivery && <DeliveryDetails />
               }
-              <div className={styles.Signature}>
               {
-                  (showSignature || showLeaveAtStop) && !visibilityState.showConfirmationPopup && <Signature type={showSignature}/>
+                  !visibilityState.showResheduleDeliveryForm &&
+                  <div className={styles.Signature}>
+                      {
+                          (showSignature || showLeaveAtStop) && !visibilityState.showConfirmationPopup  && <Signature type={showSignature}/>
+                      }
+                  </div>
               }
-              </div>
+
               {
                   ! showSignature &&
                        <>
@@ -132,9 +136,14 @@ function App() {
                   </div>
                   <ConfirmButton onClick={null}/>
               </div>
+
+              {
+                 visibilityState.showResheduleDeliveryForm &&  <div className={styles.Empty}/>
+
+              }
           </div>
           {
-              visibilityState.confirmDelivery &&  <div className={styles.BlurContainer}/>
+              visibilityState.confirmDelivery || visibilityState.showResheduleDeliveryForm &&  <div className={styles.BlurContainer}/>
 
           }
           <div className={styles.ChatWrapper} onClick={handleShowConfirmationPopup}><Chat count={1}/></div>
