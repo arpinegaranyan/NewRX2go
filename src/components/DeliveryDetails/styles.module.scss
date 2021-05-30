@@ -1,0 +1,40 @@
+.Container{
+  height: auto;
+  font-size: 14px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-indent: 1px;
+  flex-wrap: wrap;
+
+  div:nth-child(1) {
+    width: 35%;
+  }
+  div:nth-child(2) {
+    width: 46%;
+  }
+  div:nth-child(3) {
+    width: 35%;
+  }
+  div:nth-child(4) {
+    width: 46%;
+  }
+  .Detail{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    color: #000000;
+    margin-top: 7px;
+    line-height: 18px;
+
+    .Title{
+      color: #859193;
+      margin-bottom: 3px;
+    }
+    a{
+      color: #0494E4;
+    }
+  }
+
+}

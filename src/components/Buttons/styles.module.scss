@@ -1,0 +1,50 @@
+.Container{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 12px;
+  border-radius: 32px;
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: bold;
+
+}
+
+.Reshedule{
+  @extend .Container;
+  color: var(--gray);
+  min-width: 185px;
+  width: auto;
+  background: var(--blue);
+  box-shadow: inset -3px -5px 10px #9615C7;
+
+
+}
+.Confirm{
+  @extend .Container;
+  color: var(--gray);
+  min-width: 93px;
+  background: #1DBA60;
+}
+
+.Back{
+  @extend .Container;
+  min-width: 65px;
+  background: #EBF7FF;
+  box-shadow: inset -3px -5px 10px rgba(21, 81, 199, 0.19);
+  color: #0494E4;
+}
+.No{
+  @extend .Container;
+  width: 48px;
+  height: 32px;
+  background: #DA173A;
+  color:var(--gray);
+}
+.Yes{
+  @extend .Container;
+  width: 53px;
+  height: 32px;
+  background: #1DBA60;
+  color:var(--gray);
+}
