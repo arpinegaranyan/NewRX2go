@@ -6,7 +6,6 @@
   border-radius: 32px;
   font-size: 18px;
   line-height: 32px;
-  font-weight: bold;
 
 }
 
@@ -36,14 +35,18 @@
 }
 .No{
   @extend .Container;
-  width: 48px;
+  display: flex;
+  justify-content: center;
+  width: 70px;
   height: 32px;
   background: #DA173A;
   color:var(--gray);
 }
 .Yes{
   @extend .Container;
-  width: 53px;
+  display: flex;
+  justify-content: center;
+  width: 70px;
   height: 32px;
   background: #1DBA60;
   color:var(--gray);

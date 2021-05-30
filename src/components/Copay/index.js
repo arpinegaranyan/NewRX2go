@@ -9,7 +9,7 @@ function Copay({amount}) {
         <div className={styles.Container}>
             <div className={styles.Wallet}>
                 <img src={Wallet} alt="wallet"/>
-                Copay: {amount} $
+                  <span>Copay: {amount} $</span>
             </div>
         </div>
 

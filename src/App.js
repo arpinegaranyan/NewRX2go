@@ -18,7 +18,7 @@ import DeliveryDetails from "./components/DeliveryDetails";
 
 function App() {
     const [visibilityState, setVisibilityState] = useState({
-        showResheduleDeliveryForm : true,
+        showResheduleDeliveryForm : false,
         showConfirmationPopup: false,
         confirmDelivery: false
     })
