@@ -6,6 +6,7 @@
   border-radius: 32px;
   font-size: 18px;
   line-height: 32px;
+  user-select: none
 
 }
 
@@ -16,14 +17,18 @@
   width: auto;
   background: var(--blue);
   box-shadow: inset -3px -5px 10px #9615C7;
-
-
+  &:active{
+    background:#063e65;
+  }
 }
 .Confirm{
   @extend .Container;
   color: var(--gray);
   min-width: 93px;
   background: #1DBA60;
+  &:active{
+    background:#146c3a;
+  }
 }
 
 .Back{
@@ -32,6 +37,9 @@
   background: #EBF7FF;
   box-shadow: inset -3px -5px 10px rgba(21, 81, 199, 0.19);
   color: #0494E4;
+  &:active{
+    background:#c9e2f3;
+  }
 }
 .No{
   @extend .Container;
@@ -41,6 +49,9 @@
   height: 32px;
   background: #DA173A;
   color:var(--gray);
+  &:active{
+    background:#891227;
+  }
 }
 .Yes{
   @extend .Container;
@@ -50,4 +61,7 @@
   height: 32px;
   background: #1DBA60;
   color:var(--gray);
+  &:active{
+    background:#146c3a;
+  }
 }

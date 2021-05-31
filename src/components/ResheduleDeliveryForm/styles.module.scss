@@ -5,4 +5,114 @@
   align-items: flex-start;
   justify-content:space-between;
   flex-direction: column;
+  font-family: CeraBlackMedium;
+
+}
+.Row {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+  .RowDate{
+    display: flex;
+    flex-direction: column;
+    .Input{
+      padding: 3px 8px;
+    }
+  }
+  .Title{
+    margin-bottom: 2px;
+  }
+.DateInputContainer{
+  position: relative;
+  float: left;
+
+}
+.OpenButton{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 8px;
+  background: #fff;
+  pointer-events: none;
+  button {
+    border: none;
+    background: transparent;
+  }
+  img{
+    height: 12px;
+    width: 12px;
+  }
+}
+.Input{
+  background: #FFFFFF;
+  border: 1px solid #D1DDE4;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--blue);
+  padding: 6px 8px;
+  &:focus{
+    outline: none;
+  }
+}
+.Address{
+  width: 100%;
+  input{
+    width: 100%;
+  }
+}
+.ZipAndCityContainer{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  div:first-child{
+    width: 28%;
+  };
+  div:last-child{
+    width: 66%;
+  };
+  input{
+    width: 100%;
+  }
+}
+.StateAndArtCtainer{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  div:first-child{
+    width: 66%;
+  };
+  div:last-child{
+    width: 28%;
+  };
+  input{
+    width: 100%;
+  }
+}
+.TimeWrapper{
+  width: 100%;
+  border: 1px solid #D1DDE4;
+  border-radius: 16px;
+  font-size: 16px;
+  line-height: 16px;
+  color: var(--blue);
+  background: #EBF7FF;
+  display: flex;
+  justify-content: space-between;
+  height: 32px;
+  align-items: center;
+  div{
+    border-radius: 16px;
+    width: 33.3%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .Active{
+    background: #0494E4;
+    color: #FFFFFF;
+  }
 }

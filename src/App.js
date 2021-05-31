@@ -20,14 +20,19 @@ function App() {
     const [visibilityState, setVisibilityState] = useState({
         showResheduleDeliveryForm : false,
         showConfirmationPopup: false,
-        confirmDelivery: false
+        confirmDelivery: false,
+        showSignature:false
     })
 
     const handleShowConfirmationPopup = () => {
         setVisibilityState( prevState => {
             return {
                 ...prevState,
+                showResheduleDeliveryForm:false,
                 showConfirmationPopup:true,
+                confirmDelivery:false,
+                showSignature:false
+
             }
         } )
     };
@@ -45,18 +50,52 @@ function App() {
         setVisibilityState( prevState => {
             return {
                 ...prevState,
+                showResheduleDeliveryForm:false,
                 confirmDelivery:!prevState.confirmDelivery,
+                showSignature:false,
+                showConfirmationPopup:false
+            }
+        } )
+    };
+
+    const handleShowPage3 = () => {
+        setVisibilityState( prevState => {
+            return {
+                ...prevState,
+                showResheduleDeliveryForm:false,
+                showSignature:!prevState.showSignature,
+                showConfirmationPopup:false,
+                confirmDelivery:false
+            }
+        } )
+    };
+    const handleResheduleDelivery = () => {
+        setVisibilityState( prevState => {
+            return {
+                ...prevState,
+                showResheduleDeliveryForm:true,
+                showConfirmationPopup: false,
+                confirmDelivery: false,
+                showSignature:false
+            }
+        } )
+    };
+    const handleConfirm = () => {
+        setVisibilityState( prevState => {
+            return {
+                ...prevState,
+                showResheduleDeliveryForm:!prevState.showResheduleDeliveryForm,
+                showConfirmationPopup: false,
+                confirmDelivery: false,
+                showSignature:false
             }
         } )
     };
 
 
-//open first page ` showSignature = false, showLeaveAtStop = true, showConfirmationPopup = false
-//open second page ` showSignature = false,  showConfirmationPopup = true
-//open third page ` showSignature = true,  showConfirmationPopup = false
 
 
-  const showSignature = false;
+  const showSignature = true;
   const showLeaveAtStop = true;
 
 
@@ -73,7 +112,7 @@ function App() {
                   </div>
               }
 
-              <div className={styles.Header}>
+              <div className={styles.Header} >
                   <img src={Logo} alt="logo"/>
                   <img src={Purple} alt="purple"/>
                   <div className={styles.IdContainer}>
@@ -81,12 +120,16 @@ function App() {
                       <span className={styles.Id}>#11058553</span>
                   </div>
               </div>
-              <div className={styles.Steps}>
-                  <Steps/>
-              </div>
+              {
+                  !visibilityState.showResheduleDeliveryForm &&
+                  <div className={styles.Steps}>
+                      <Steps/>
+                  </div>
+              }
+
               <div className={styles.Message}>
                   {
-                      showSignature ? "Your signature" : visibilityState.showResheduleDeliveryForm ? "Reshedule delivery": "Confirm delivery to your order:"
+                      visibilityState.showSignature ? "Your signature" : visibilityState.showResheduleDeliveryForm ? "Reshedule delivery": "Confirm delivery to your order:"
                   }
 
               </div>
@@ -101,19 +144,19 @@ function App() {
                   </div>
               }
               {
-                  !visibilityState.showResheduleDeliveryForm && !showSignature && !visibilityState.confirmDelivery && <DeliveryDetails />
+                  !visibilityState.showResheduleDeliveryForm && !visibilityState.showSignature && !visibilityState.confirmDelivery && <DeliveryDetails />
               }
               {
                   !visibilityState.showResheduleDeliveryForm &&
                   <div className={styles.Signature}>
                       {
-                          (showSignature || showLeaveAtStop) && !visibilityState.showConfirmationPopup  && <Signature type={showSignature}/>
+                          (visibilityState.showSignature || showLeaveAtStop) && !visibilityState.showConfirmationPopup  && <Signature type={visibilityState.showSignature}/>
                       }
                   </div>
               }
 
               {
-                  ! showSignature &&
+                  ! visibilityState.showSignature &&
                        <>
                             <span className={styles.InsText}>Instruction</span>
                             <div className={styles.InstructionsContainer}><Instructions/></div>
@@ -121,7 +164,7 @@ function App() {
                        </>
               }
               {
-                  showSignature && <div className={styles.SignHere}><SignHere/></div>
+                  visibilityState.showSignature && <div className={styles.SignHere}><SignHere/></div>
 
               }
               {
@@ -131,10 +174,10 @@ function App() {
               <div className={styles.Footer}>
                   <div className={styles.LeftButton}>
                      {
-                         showSignature ?  <BackButton onClick={null}/> : <ResheduleButton onClick={null}/>
+                         visibilityState.showSignature ?  <BackButton onClick={null}/> : <ResheduleButton onClick={handleResheduleDelivery}/>
                      }
                   </div>
-                  <ConfirmButton onClick={null}/>
+                  <ConfirmButton onClick={handleShowPage3}/>
               </div>
 
               {
